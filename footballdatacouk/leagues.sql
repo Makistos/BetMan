@@ -1,0 +1,1 @@
+INSERT INTO League (long_name, short_name, csv_name) VALUES ('English Premier League', 'EPL', 'E0');

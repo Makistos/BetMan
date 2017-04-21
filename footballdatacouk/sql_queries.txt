@@ -1,0 +1,8 @@
+# Get matches and goals for and against for team
+select count(*), sum(mt.gf), sum(mt.ga) from matchteam mt, team t where t.short_name='Everton' and mt.team=t.rowid;
+# Get matches and goals for and against for team, home matches only
+select count(*), sum(mt.gf), sum(mt.ga) from matchteam mt, team t where t.short_name='Everton' and mt.team=t.rowid and mt.venue='h';
+# Print date, teams and result for every match
+select distinct m.date, t1.short_name as home_team, t2.short_name as away_team, mt1.gf as home_goals, mt2.gf as away_goals from matchteam mt1, matchteam mt2, team t1, team t2, match m where mt1.team=t1.rowid and mt2.team = t2.rowid and m.home_team = mt1.id and m.away_team = mt2.id order by m.date;
+# Print date, teams and results for one team and one season
+select distinct m.date, t1.short_name as home_team, t2.short_name as away_team, mt1.gf as home_goals, mt2.gf as away_goals from matchteam mt1, matchteam mt2, team t1, team t2, match m where mt1.team=t1.rowid and mt2.team = t2.rowid and m.home_team = mt1.id and m.away_team = mt2.id and (t1.short_name='Everton' or t2.short_name='Everton') and season = 2015 order by m.date;
